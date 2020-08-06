@@ -14,4 +14,4 @@
 #### Demo geolocalización de hospitales de Buenos Aires
 
 ### Vista de mapa
-![Alt text](/relative/path/to/Geolocalizacion-con-leaflet.jpg?raw=true "Geolocalizacion con Node.js y Leaflet") 
+!![ScreenShot](https://raw.github.com/JessVel/geolocalizacion-hospitales-buenos-aires/master/src/public/images/Geolocalizacion-con-leaflet.png) 
