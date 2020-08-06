@@ -1,0 +1,19 @@
+{
+  "name": "geolocalizacion-app",
+  "version": "1.0.0",
+  "description": "Challenge geolocalizacion app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --watch src src/index.js"
+  },
+  "author": "Jesica Velazquez",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "ejs-mate": "^3.0.0",
+    "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
