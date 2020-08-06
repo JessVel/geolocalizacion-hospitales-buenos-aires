@@ -29,5 +29,4 @@
   📁Views<br>
     📑google-map.ejs<br>
       ` <script defer
-      src="https://maps.googleapis.com/maps/api/js?key={YOURAPIKEY}&callback=initMap">
-      </script>`
+      src="https://maps.googleapis.com/maps/api/js?key={YOURAPIKEY}&callback=initMap"></script>`
