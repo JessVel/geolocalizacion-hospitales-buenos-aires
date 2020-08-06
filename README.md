@@ -7,6 +7,7 @@
 
 ### Vista de mapa Leaflet + Node.js
 ![ScreenShot](https://raw.github.com/JessVel/geolocalizacion-hospitales-buenos-aires/master/src/public/images/Geolocalizacion-con-leaflet.png) 
+![ScreenShot](https://raw.github.com/JessVel/geolocalizacion-hospitales-buenos-aires/master/src/public/images/Geolocalizacion-con-leaflet (1).png) 
 
 #### Intereacciones con el mapa:
 📍 Popups que muestran nombre del hospital al hacer click en los marcadores. <br>
