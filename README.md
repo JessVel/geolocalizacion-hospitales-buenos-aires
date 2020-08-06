@@ -11,6 +11,7 @@
 
 ![ScreenShot](https://raw.github.com/JessVel/geolocalizacion-hospitales-buenos-aires/master/src/public/images/Geolocalizacion-con-leaflet.png) 
 📍 Popups que muestran nombre del hospital al hacer click en los marcadores. <br>
+
 ![ScreenShot](https://raw.github.com/JessVel/geolocalizacion-hospitales-buenos-aires/master/src/public/images/Geolocalizacion-con-leaflet(1).png) 
 📍Popups que muestran las coordenadas de cualquier lugar donde se haga click.
 
