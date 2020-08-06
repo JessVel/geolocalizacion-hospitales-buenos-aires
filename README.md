@@ -2,6 +2,7 @@
 
 ## To run this code🚀
 `npm install`
+`npm run dev`
     
 ## Demo geolocalización de hospitales de Buenos Aires
 
