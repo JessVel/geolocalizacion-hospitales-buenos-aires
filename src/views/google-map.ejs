@@ -1,79 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-    <title>Geolocation con Google API</title>
-    <style>
-     
-      #map {
-        height: 100%;
-      }
-     
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script>
-    
-      var map, infoWindow;
-      function initMap() {
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+  <title>Geolocation con Google API</title>
+  <style>
+    #map {
+      height: 100%;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+  <script>
+    window.addEventListener('load', function () {
+      var map;
+      var infowindow;
+      navigator.geolocation.getCurrentPosition(function success(position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        initialize(latitude, longitude);
+      }, function error() {
+        alert('No se pudo recuperar su ubicación, usando Argentina 😊');
+        initialize(-34.6083, -58.3712);
+      });
+
+      function initialize(latitude, longitude) {
+        var currentLocation = new google.maps.LatLng(latitude, longitude);
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 6
+          center: currentLocation,
+          zoom: 15
         });
-        infoWindow = new google.maps.InfoWindow;
+        var request = {
+          location: currentLocation,
+          radius: 200,
+          types: ['hospital',
+            'health'] // this is where you set the map to get the hospitals and health related places
+        };
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch(request, callback);
+      }
 
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
+      function callback(results, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
         }
       }
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
+      function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
+        google.maps.event.addListener(marker, 'click', function () {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
+        });
       }
-    </script>
-    <script defer
-    src="https://maps.googleapis.com/maps/api/js?key={YOURAPIKEY}&callback=initMap">
-    </script>
-  </body>
+      google.maps.event.addDomListener(window, 'load', initialize);
+    });
+  </script>
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=<%=apiKey%>&libraries=places">
+  </script>
+</body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
